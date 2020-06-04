@@ -1,0 +1,66 @@
+body {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.login_header {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.form__box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 300px;
+}
+
+.form__field,
+.form__button {
+  background-color: #ece1e1;
+  border: 2px solid #ad92e8;
+  border-radius: 30px;
+  font-family: 'Quicksand', sans-serif !important;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.form__field {
+  width: 235px;
+}
+
+.form__button {
+  width: 160px;
+}
+
+.form__field::placeholder {
+  color: #000;
+  padding-left: 20px;
+}
+
+.enter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.enter__logingmail {
+  text-decoration: underline;
+  color: #302746;
+}
+
+.enter__register {
+  display: flex;
+  justify-content: center;
+}
+
+.enter__register-link {
+  margin-left: 5px;
+}
