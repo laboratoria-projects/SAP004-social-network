@@ -1,21 +1,18 @@
-export default () =>{
-    const container = document.createElement("div");
-    const template = `
-      <h1>Register to share knowledge!</h1>
-      <form class="register-e-mail-form">
-        <div>
-          <label for="email-input"><b>E-mail</b></label>
-          <input type="email" id="email-input" placeholder="Enter E-mail" required>
-          <label for="password-input"><b>Password</b></label>
-          <input type="password" id="password-input" placeholder="Enter Password" required>
-          <input type="submit" id="submit-user-form" value="Create an account">
-        </div>
+export default () => {
+  const container = document.createElement('section');
+  const template = `
+      <form class="register-e-mail-form form">
+        <section class="form__box">
+          <input id="email-input" class="form__field" type="email" placeholder="Enter E-mail" required>
+          <input id="password-input" class="form__field" type="password" placeholder="Enter Password" required>
+          <input id="submit-user-form" class="form__button" type="submit" value="Create an account">
+        </section>
       </form> 
-        <div class="register-gmail-section">
-          <p>Register using Gmail:</p>
-          <div id="firebaseui-auth-container"></div>
-        </div>
+        <section class="register-gmail-section enter">
+          <p class="enter__logingmail">Create with</p>
+          <button id="firebaseui-auth-container"></button>
+        </section>
     `;
-    container.innerHTML = template;
-    return container;
+  container.innerHTML = template;
+  return container;
 };
