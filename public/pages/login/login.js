@@ -32,7 +32,7 @@ export function loginEmail(){
     })
   }
 
-export function loginGmail(ui){
+  export function loginGmail(ui){
     ui.reset();
     ui.start('#firebaseui-auth-container', {
       signInOptions: [
