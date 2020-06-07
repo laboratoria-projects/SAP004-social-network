@@ -1,7 +1,7 @@
 export default () =>{
     const container = document.createElement("div");
     const template = `
-      <form class="login-form">
+      <form class="login-form" onsubmit="return false">
         <div>
           <label for="email-input"><b>E-mail</b></label>
           <input type="email" id="email-input" placeholder="Enter E-mail" required>

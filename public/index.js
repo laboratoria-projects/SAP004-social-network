@@ -3,11 +3,13 @@ import routes from "./routes.js";
 //main da página de login html, feita com lógica js
 import login from "./pages/login/index.js";
 //login parte lógica js com firebase, ligação com form e gmail auth.
-import {loginGmail, loginEmail} from "./pages/login/login.js";
+import {loginGmail, loginEmail, stateUserChange} from "./pages/login/login.js";
 //main da página de autenticação html, feita com lógica js
 import auth from "./pages/auth/index.js";
 //autenticação lógica js com firebase, ligação com o form
 import {createUser, authGmail} from "./pages/auth/auth.js";
+//functions da home depois do user logado 
+import {logout} from "./pages/home/home.js";
 
 const main = document.querySelector('#root');
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -45,10 +47,12 @@ function callFunctions(page){
             authGmail(ui); 
             break;
         case "login":
+            stateUserChange();
             loginGmail(ui); 
             loginEmail();
             break;
         case "home":
+            logout();
             break;
         default:
             break;
