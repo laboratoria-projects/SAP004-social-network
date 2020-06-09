@@ -3,16 +3,18 @@ const formPosts = document.getElementById("posts");
 formPosts.addEventListener("submit", function (event) {
     event.preventDefault();
     const text = document.getElementById("post-text").value;
-    var user = firebase.auth().currentUser;
-    var id =  user.uid;
+    const user = firebase.auth().currentUser;
+    const id =  user.uid;
+    const date =  new Date;
     const post = {
         text: text,
+        date: date,
         userId: id, 
         likes: 0,
         comments: [],
     }
     const postCollection = firebase.firestore().collection("postagens");
-    postCollection.add(post);
+    postCollection.add(post)
 });
 }
 
