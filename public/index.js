@@ -1,54 +1,62 @@
-// Este é o ponto de entrada de sua aplicação
-//import { home } from './pages/home/main.js';
+//rotas 
+import routes from "./routes.js";
+//main da página de login html, feita com lógica js
+import login from "./pages/login/index.js";
+//login parte lógica js com firebase, ligação com form e gmail auth.
+import {loginGmail, loginEmail, stateUserChange} from "./pages/login/login.js";
+//main da página de autenticação html, feita com lógica js
+import auth from "./pages/auth/index.js";
+//autenticação lógica js com firebase, ligação com o form
+import {createUser, authGmail} from "./pages/auth/auth.js";
+//functions da home depois do user logado 
+import { createPost, loadPosts, logout} from "./pages/home/home.js";
 
-//document.querySelector('#root').appendChild(home());
+const main = document.querySelector('#root');
+const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-document.addEventListener('DOMContentLoaded', function() {
-    // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-    // // The Firebase SDK is initialized and available here!
-    //
-    // firebase.auth().onAuthStateChanged(user => { });
-    // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-    // firebase.messaging().requestPermission().then(() => { });
-    // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-    //
-    // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-    try {
-      let app = firebase.app();
-      let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-      document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-    } catch (e) {
-      console.error(e);
-      document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-    }
-  });
-
-  document.getElementById("posts").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const text = document.getElementById("post-text").value;
-    const post = {
-        text: text,
-        userId: "thais", //pegar variável com a id do usuário
-        likes: 0,
-        comments: []
-    }
-    //salvar post no banco de dados
-    const postCollection = firebase.firestore().collection("postagens");
-    postCollection.add(post);
-});
-//função para adicionar posts
-function addPosts(post){
-    const postTemplate = `<li id="${post.id}">${post.data().text} <br/> 💜${post.data().likes}</li>`;
-    document.getElementById("posts").innerHTML += postTemplate;
-}
-//função para ler e carregar todos os posts feitos pelo usuário
-function loadPosts(){
-    const postCollection = firebase.firestore().collection("postagens");
-    postCollection.get().then(snap => {
-        snap.forEach(post => {
-            addPosts(post)
-        })
+const init = () => {
+window.addEventListener("hashchange", () => {
+    renderPage();
     })
 }
-loadPosts();
+
+const renderPage = () => {
+    main.innerHTML = "";
+    const page = validateHash(window.location.hash);
+    main.appendChild(routes[page]);
+    callFunctions(page);
+}
+
+const validateHash = (hash) => {
+    if(hash ===""){
+        return "login"
+    }else{
+        return hash.replace("#","")
+    }
+}
+
+window.addEventListener("load",() => {
+    renderPage();
+    init();
+});
+
+function callFunctions(page){
+    switch (page){
+        case "auth":
+            createUser();
+            authGmail(ui); 
+            break;
+        case "login":
+            stateUserChange();
+            loginGmail(ui); 
+            loginEmail();
+            break;
+        case "home":
+            createPost();
+            loadPosts();
+            logout();
+            break;
+        default:
+            break;
+    }
+}
