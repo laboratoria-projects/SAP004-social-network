@@ -11,7 +11,6 @@ export function firebaseAddPosts(event){
     const postCollection = firebase.firestore().collection("postagens");
     postCollection.add(post);
 }
-//função para adicionar posts
 function addPosts(post) {
     const postTemplate = `<li id="${post.id}">${post.data().text} <br/> 💜${post.data().likes}</li>`;
     document.getElementById("posts").innerHTML += postTemplate;
