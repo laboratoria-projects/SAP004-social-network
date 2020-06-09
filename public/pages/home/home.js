@@ -3,9 +3,11 @@ const formPosts = document.getElementById("posts");
 formPosts.addEventListener("submit", function (event) {
     event.preventDefault();
     const text = document.getElementById("post-text").value;
+    var user = firebase.auth().currentUser;
+    var id =  user.uid;
     const post = {
         text: text,
-        userId: "camila", 
+        userId: id, 
         likes: 0,
         comments: [],
     }
@@ -38,4 +40,15 @@ signOutButton.addEventListener("click", () => {
           alert("An error happened.")
       });     
 })
+}
+
+export function userLogged(){
+    var user = firebase.auth().currentUser;
+    var  email = user.email;
+    var id =  user.uid;
+    const userInfo = document.getElementById("user-info");
+  
+    if (user != null) {
+      userInfo.innerHTML = email, id;
+    }
 }

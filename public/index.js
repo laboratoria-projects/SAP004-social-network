@@ -9,7 +9,7 @@ import auth from "./pages/auth/index.js";
 //autenticação lógica js com firebase, ligação com o form
 import {createUser, authGmail} from "./pages/auth/auth.js";
 //functions da home depois do user logado 
-import { createPost, loadPosts, logout} from "./pages/home/home.js";
+import { createPost, loadPosts, logout, userLogged} from "./pages/home/home.js";
 
 const main = document.querySelector('#root');
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -52,6 +52,7 @@ function callFunctions(page){
             loginEmail();
             break;
         case "home":
+            userLogged();
             createPost();
             loadPosts();
             logout();
