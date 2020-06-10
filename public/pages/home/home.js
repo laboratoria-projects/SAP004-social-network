@@ -14,17 +14,27 @@ formPosts.addEventListener("submit", function (event) {
 });
 }
 
-function addPosts (post){
+function addPostsTemplate (post){
     const postList = document.getElementById("post-list");
-    const postTemplate = `<li id="${post.id}">${post.data().text} <br/> 💜${post.data().likes}</li>`;
-    postList.innerHTML += postTemplate;
+    const li = document.createElement('li');
+    const attribute = document.createAttribute(`id`);
+    attribute.value = post.id;
+    li.innerHTML += `${post.data().text} <br/> <submit>💜<submit> ${post.data().likes}`;
+    li.setAttributeNode(attribute);
+    postList.appendChild(li);
+    //const postTemplate = `<li id="${post.id}">${post.data().text} <br/> 💜${post.data().likes}</li>`;
+    //postList.innerHTML += postTemplate;
+}
+
+function countLikes () {
+
 }
 
 export function loadPosts(){
     const postCollection = firebase.firestore().collection("postagens");
     postCollection.get().then(snap => {
         snap.forEach(post => {
-            addPosts(post)
+            addPostsTemplate(post)
         })
     })
 }
