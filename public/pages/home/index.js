@@ -15,6 +15,5 @@ export default () =>{
     `;
 
   container.innerHTML = template;
-
   return container;
 };
