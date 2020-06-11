@@ -5,10 +5,10 @@ const main = document.querySelector('#root');
 const renderPage = () => {
     main.innerHTML = '';
     firebase.auth().onAuthStateChanged(user => {
-        let path = user !== null ? 'home' : 'login';
-
-        if(!location.hash || user === null) {
-            location.hash = path;
+        if (user === null && (location.hash === '#login' || location.hash === '#register' || !location.hash)) {
+            location.hash = location.hash || 'login';
+        } else {
+            location.hash = 'home';
         }
 
         main.appendChild(routes[location.hash]);
