@@ -19,28 +19,26 @@ function addPostsTemplate(post) {
     const id = post.id;
     const text = post.data().text;
     const like = post.data().likes;
-    // const li = document.createElement('li');
-    // const postId = document.createAttribute(`id`);
-    // postId.value = post.id;
-    // const likesBtn = document.createElement('button')
-    // li.innerHTML += `${post.data().text} <br/> <submit id>💜<submit> ${post.data().likes}`;
-    // li.setAttributeNode(postId);
-    // postList.appendChild(li);
-    const postTemplate = `<li id="${id}"> <br/> ${text} <br/>
-    <input type="button" class="likes" value="${like} 💜"></li>`;
+    const postTemplate = `<li id="${id}">
+    <p>${text}</p>
+    <button class="likes">${like}</button>
+    <span>💚</span>
+    </li>`;
     postList.innerHTML += postTemplate;
-    const postsId = document.querySelector(`#${post.id}`)
-    const likesBtn = postsId.querySelector(`.likes`);
-    likesBtn.addEventListener('click', countLikes(like));
+    const likesBtn = document.querySelectorAll('.likes');
+    likesBtn.forEach(like => {
+        like.addEventListener('click', countLikes);
+    });
 }
 
-function countLikes(like) {
-    const counter = like + 1;
-    firebase.firestore().collection('postagens').doc(post.id).update({
-            likes: counter
-        })
+async function countLikes(e) {
+    e.preventDefault();
+    const counter = e.target.value + 1;
+    const doc = await firebase.firestore().collection('postagens').doc(e.target.parentElement.id);
+    const post = await doc.get();
+    await doc.set({ likes: post.data().likes + 1 }, { merge: true })
         .then(() => {
-            likesBtn.value = `${counter} 💜`
+            return e.target.value = counter;
         })
 };
 
