@@ -26,12 +26,12 @@ function addPostsTemplate(post) {
     // li.innerHTML += `${post.data().text} <br/> <submit id>💜<submit> ${post.data().likes}`;
     // li.setAttributeNode(postId);
     // postList.appendChild(li);
-    const postTemplate = `<li id="${id}"> <br/> ${text} <br/>
+    const postTemplate = `<li id="${post.id}"> <br/> ${text} <br/>
     <input type="button" class="likes" value="${like} 💜"></li>`;
     postList.innerHTML += postTemplate;
-    const postsId = document.querySelector(`#${post.id}`)
-    const likesBtn = postsId.querySelector(`.likes`);
-    likesBtn.addEventListener('click', countLikes(like));
+    // const postsId = document.querySelector(`#${post.id}`)
+    // const likesBtn = postsId.querySelector(`.likes`);
+    // likesBtn.addEventListener('click', countLikes(like));
 }
 
 function countLikes(like) {
