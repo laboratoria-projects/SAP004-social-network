@@ -51,7 +51,7 @@ body {
   margin-bottom: 50px;
 }
 
-.enter__logingmail {
+.option_form {
   text-decoration: underline;
   color: #302746;
 }
@@ -63,4 +63,12 @@ body {
 
 .enter__register-link {
   margin-left: 5px;
+}
+
+.button-gmail {
+  margin: 20px 0px;
+}
+
+.button-gmail i {
+  font-size: 50px;
 }
