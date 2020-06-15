@@ -90,6 +90,7 @@ async function newPost(e) {
         await db.collection('postagens').add({
             user: firebase.auth().currentUser.uid,
             text: e.target.elements.post.value,
+            private: e.target.elements.audience.checked,
             likes: 0,
             date: Date.now()
         })
