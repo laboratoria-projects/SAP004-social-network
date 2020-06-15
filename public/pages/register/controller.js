@@ -26,7 +26,8 @@ async function registerEmailAndPassword(e) {
 }
 
 function controllerRegister(template) {
-  const container = document.createElement('section');
+  const container = document.createElement('div');
+  container.classList.add('container__form');
   container.innerHTML = template;
 
   const form = container.querySelector('#form-register');
