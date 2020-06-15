@@ -2,15 +2,15 @@ body {
   font-family: 'Roboto', sans-serif !important;
 }
 
-.login_header {
-  text-align: center;
-  margin-bottom: 50px;
-  margin-top: 50px;
-}
-
-.form {
+#root {
   display: flex;
   justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px;
 }
 
 .form__box {
@@ -71,4 +71,88 @@ body {
 
 .button-gmail i {
   font-size: 50px;
+}
+
+.logo-desktop {
+  display: none;
+}
+
+.logo-mobile {
+  display: block;
+}
+
+.form-title {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  .logo-desktop {
+    display: block;
+    width: 70%;
+  }
+
+  .logo-mobile {
+    display: none;
+  }
+
+  .form-title {
+    display: block;
+    color: #392369;
+    font-size: 70px;
+    margin: 50px 0px;
+  }
+
+  .container__form {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: space-between;
+    padding: 0px 50px;
+  }
+
+  .container__auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70%;
+  }
+
+  .form__field {
+    font-family: 'Roboto', sans-serif;
+    width: 427px;
+  }
+
+  .form__button {
+    width: 238px;
+  }
+
+  .header {
+    width: 40%;
+  }
+
+  .logo-desktop {
+    width: 100%;
+  }
+
+  .back {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .form-title {
+    margin: 30px 0px;
+  }
+
+  .form__box {
+    margin-bottom: 20px;
+  }
+
+  .enter {
+    margin-bottom: 20px;
+  }
+
+  .back {
+    margin-top: 20px;
+  }
 }
