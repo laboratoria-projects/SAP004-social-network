@@ -25,7 +25,7 @@ export default () => {
         </div>
     </form>
 
-    <ul id="list-posts"></ul>
+    <ul id="list-posts" class="post-feed"></ul>
   `;
 
   return controllerHome(template);

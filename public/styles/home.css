@@ -1,3 +1,6 @@
+section {
+    width: 100%;
+}
 .nav-home {
     background-color:#AD92E8;
 }
@@ -92,15 +95,28 @@ label :nth-child(3){
     top: 16px;
 }
 */
-
+.post-feed {
+    margin: 10px;
+}
+.post-feed li {
+    display: flex;
+    flex-direction: column;
+}
 .message-post {
-
+    border: 1px solid gray;
 }
 
-.like-button {
+.post-feed li div {
+    display: flex;
+    justify-content: flex-start;
+    border: 1px solid gray;
+    padding: 2%;
+}
+
+/* .like-button {
 
 }
 
 .delete-button {
 
-}
+} */ 

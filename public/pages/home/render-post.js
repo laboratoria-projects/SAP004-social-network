@@ -19,9 +19,11 @@ async function renderPosts() {
             
             li.innerHTML = `
                 <p class="message-post">${post.text}</p>
-                <button class="like-button">${post.likes}</button>
-                <button class="edite-button">Edit</button>
-                <button class="delete-button">Delete</button> 
+                <div>
+                    <button class="like-button">${post.likes}</button>
+                    <button class="edite-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div> 
             `;
 
             li.id = postRef.id;
