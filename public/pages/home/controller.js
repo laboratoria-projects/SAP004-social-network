@@ -29,9 +29,11 @@ function eventsPost(listPosts) {
 
 
 async function countLikes(e) {
+    e.preventDefault();
+
     const db = firebase.firestore();
 
-    const doc = await db.collection('postagens').doc(e.target.parentElement.id);
+    const doc = await db.collection('postagens').doc(e.target.parentElement.parentElement.id);
 
     const post = await doc.get();
 
@@ -45,24 +47,22 @@ async function editPost(e) {
     e.preventDefault();
 
     const button = e.target;
-    const fieldPost = e.target.parentElement.querySelector('.message-post');
+    const fieldPost = e.target.parentElement.parentElement.parentElement.querySelector('.message-post');
     const db = firebase.firestore();
-    const id = e.target.parentElement.id;
+    const id = e.target.parentElement.parentElement.parentElement.id;
 
     if (fieldPost.getAttribute('contentEditable', true)) {
         fieldPost.setAttribute('contentEditable', false);
         const textContent = fieldPost.textContent;
 
         await db.collection("postagens").doc(id).set({
-            ...e.target.parentElement.post,
+            ...e.target.parentElement.parentElement.parentElement.post,
             text: textContent,
         })
-        button.innerHTML = 'Edit';
         renderPosts();
     } else {
         fieldPost.setAttribute('contentEditable', true);
         fieldPost.focus();
-        button.innerHTML = 'Salve'
     }
 
 }
@@ -71,7 +71,7 @@ async function deletePost(e) {
     e.preventDefault();
 
     const db = await firebase.firestore();
-    const id = e.target.parentElement.id;
+    const id = e.target.parentElement.parentElement.parentElement.id;
 
     await db.collection('postagens').doc(id).delete().then(() => {
         console.log('Document successfully deleted!');
@@ -103,17 +103,51 @@ async function newPost(e) {
 
 }
 
+
+function stateMenu(e) {
+    e.preventDefault();
+
+    const nav = document.querySelector('#nav');
+
+    if (nav.classList.value === 'container-menu-burguer active') {
+        nav.classList.remove('active');
+        nav.classList.add('disable');
+    } else {
+        nav.classList.remove('disable');
+        nav.classList.add('active');
+    }
+}
+
+
+function privatePost() {
+    const checkbox = document.querySelector('#private-selector');
+    const iconLock = document.querySelector('#icon-lock');
+
+    if (checkbox.checked === true) {
+        iconLock.classList.remove('icon-lock-closed');
+        iconLock.classList.add('icon-lock-open');
+    } else {
+        iconLock.classList.remove('icon-lock-open');
+        iconLock.classList.add('icon-lock-closed');
+    }
+}
+
 function controllerHome(template) {
-    const container = document.createElement('section');
+    const container = document.createElement('div');
+    container.classList.add('home');
     container.innerHTML = template;
 
     const formPost = container.querySelector('#form-post');
     const buttonLoggout = container.querySelector('#loggout');
+    const iconMenu = container.querySelector('#icon-menu');
+    const lock = container.querySelector('#lock');
 
     renderPosts();
 
     formPost.addEventListener('submit', newPost);
     buttonLoggout.addEventListener('click', loggout);
+    iconMenu.addEventListener('click', stateMenu);
+    lock.addEventListener('click', privatePost);
 
     return container;
 }
