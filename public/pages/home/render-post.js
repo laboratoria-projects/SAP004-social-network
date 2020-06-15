@@ -19,14 +19,22 @@ async function renderPosts() {
             
             li.innerHTML = `
                 <p class="message-post">${post.text}</p>
-                <div>
-                    <button class="like-button">${post.likes}</button>
-                    <button class="edite-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                </div> 
+                <section class="list-buttons">
+                    <button class="like-button">
+                        ${post.likes}
+                        <i class="icon-heart heart-clicked"></i>
+                    <button>
+                    <button class="edite-button">
+                        <i class="icon-pencil"></i>
+                    </button>
+                    <button class="delete-button">
+                        <i class="icon-bin"></i>
+                    </button>
+                </section> 
             `;
 
             li.id = postRef.id;
+            li.classList.add('list');
             li.post = post;
 
             if (postRef.data().private === false) {
