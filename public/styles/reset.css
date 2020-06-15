@@ -50,6 +50,6 @@ button {
     margin: 0;
 }
 
-input {
+input, button {
 	outline: none;
 }
