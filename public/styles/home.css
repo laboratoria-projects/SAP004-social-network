@@ -1,0 +1,106 @@
+.nav-home {
+    background-color:#AD92E8;
+}
+
+.title-knowledge {
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    color:#3B324F;
+    margin-left: 25%;
+}
+
+.post-input {
+    border-radius: 5px;
+    width: 300px;
+    height: 100px;
+    border: 1px solid #3b324f85;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+
+.post-form{
+    border: 1px solid #3b324f85;
+    border-radius: 5px;
+    margin-top: 10%;
+    display: flex; 
+    flex-direction: column;
+}
+
+.submit-post-button {
+    font-size: large;
+    border: 1px solid #AD92E8;
+    padding: 3px;
+    border-radius: 6px;
+    color: #3B324F;
+    background-color: #F2EBEB;
+}
+
+.private-checkbox {
+    font-size: large;
+    border: 1px solid #AD92E8;
+    padding: 3px;
+    border-radius: 5px;
+    color: #3B324F;
+    background-color: #F2EBEB;
+}
+
+.buttons-post {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+}
+
+/*
+.container-menu-burguer {
+    margin-bottom: 3%;
+}
+
+#checkbox-menu{
+    position: absolute;
+    opacity: 0;
+}
+
+label {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    height: 22px;
+    width: 30px;
+}
+
+label span{
+    position: absolute;
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 30px;
+    background: #3B324F;
+    transition: 0.25s ease-in-out;
+}
+
+label :nth-child(1){
+    top: 0;
+}
+
+label :nth-child(2){
+    top: 8px;
+}
+
+label :nth-child(3){
+    top: 16px;
+}
+*/
+
+.message-post {
+
+}
+
+.like-button {
+
+}
+
+.delete-button {
+
+}
