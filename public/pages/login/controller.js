@@ -27,6 +27,7 @@ async function login(e) {
 
 function controllerLogin(template) {
   const container = document.createElement('section');
+  container.classList.add('container__form');
   container.innerHTML = template;
 
   const form = container.querySelector('#form-login');

@@ -26,7 +26,14 @@ async function renderPosts() {
 
             li.id = postRef.id;
             li.post = post;
-            html.push(li);
+
+            if (postRef.data().private === false) {
+                html.push(li);
+            } 
+            else if (postRef.data().private === true && postRef.data().user === firebase.auth().currentUser.uid) {
+                html.push(li);
+            }
+            
         },
     )
 
