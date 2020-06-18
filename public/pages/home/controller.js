@@ -79,7 +79,7 @@ async function editAudience(e) {
                 ...e.target.parentElement.parentElement.parentElement.post,
                 private: !doc.data().private
             })
-            alert("The post audience was changed");
+            console.log("The post audience was changed");
         } else {
             console.log("No such document!");
         }

@@ -37,7 +37,7 @@ async function renderPosts() {
                         <i class="icon-bin"></i>
                     </button>
                     <button class="audience-button">
-                    <i id="icon-lock" class="${audience}"></i>
+                        <i id="icon-lock" class="${audience}"></i>
                     </button>
                 </section> 
             `;
