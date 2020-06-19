@@ -1,4 +1,4 @@
-import controllerHome from './controller.js'
+import controllerHome from './controller.js';
 
 export default () => {
   const template = `

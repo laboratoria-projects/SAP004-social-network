@@ -1,11 +1,11 @@
 import registerGmail from '../../scripts/auth.js';
 
 function error(e) {
-  console.log(e)
+  console.log(e);
 }
 
 function success() {
-  location.hash = '#home';
+  window.location.hash = '#home';
 }
 
 async function login(e) {
@@ -20,8 +20,8 @@ async function login(e) {
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
     success();
-  } catch (e) {
-    error(e)
+  } catch (erro) {
+    error(erro);
   }
 }
 
@@ -34,7 +34,7 @@ function controllerLogin(template) {
   const gmail = container.querySelector('#gmail-auth');
 
   form.addEventListener('submit', login);
-  gmail.addEventListener('click', (e) => registerGmail(e));
+  gmail.addEventListener('click', e => registerGmail(e));
 
   return container;
 }
