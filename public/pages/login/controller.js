@@ -1,7 +1,7 @@
 import registerGmail from '../../scripts/auth.js';
 
 function error(e) {
-  console.log(e)
+  console.log(e);
 }
 
 function success() {
@@ -15,13 +15,14 @@ async function login(e) {
     const form = e.target.elements;
     const email = form.email.value;
     const password = form.password.value;
+    
 
     await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
     success();
   } catch (e) {
-    error(e)
+    error(e);
   }
 }
 
@@ -34,7 +35,7 @@ function controllerLogin(template) {
   const gmail = container.querySelector('#gmail-auth');
 
   form.addEventListener('submit', login);
-  gmail.addEventListener('click', (e) => registerGmail(e));
+  gmail.addEventListener('click', e => registerGmail(e));
 
   return container;
 }

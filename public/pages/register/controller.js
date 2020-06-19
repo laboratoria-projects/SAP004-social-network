@@ -35,7 +35,7 @@ function controllerRegister(template) {
 
   form.addEventListener('submit', registerEmailAndPassword);
 
-  gmail.addEventListener('click', (e) => registerGmail(e));
+  gmail.addEventListener('click', e => registerGmail(e));
 
   return container;
 }

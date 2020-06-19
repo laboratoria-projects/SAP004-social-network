@@ -1,4 +1,4 @@
-import controllerRegister from './controller.js'
+import controllerRegister from './controller.js';
 
 export default () => {
   const template = `
@@ -11,6 +11,7 @@ export default () => {
         <fieldset class="form-title">
             <h1>Knowlegde</h1>
         </fieldset>
+        <input class="form__field" type="text" name="displayname" placeholder="Enter Name" required>
         <input class="form__field" type="email" name="email" autocomplete="email" placeholder="Enter E-mail" required />
         <input class="form__field" type="password" name="password" autocomplete="new-password" placeholder="Enter Password" required />
         <input class="form__button" type="submit" value="Create an account" />

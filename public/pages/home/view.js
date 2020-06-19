@@ -1,4 +1,4 @@
-import controllerHome from './controller.js'
+import controllerHome from './controller.js';
 
 export default () => {
   const template = `
@@ -35,7 +35,15 @@ export default () => {
 
       <ul id="list-posts" class="post-feed"></ul>
     </main>
+    <section>
+        <p id="user-name">User Name</p>
+        <p id="user-email">User E-mail</p>
+        <figure >
+          <img src="imagem.jpg" id="user-avatar" alt="Profile Photo">	
+        </figure>
+    </section>
   `;
 
   return controllerHome(template);
 };
+

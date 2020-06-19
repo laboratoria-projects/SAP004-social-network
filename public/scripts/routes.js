@@ -1,4 +1,4 @@
-import login from '../pages/login/view.js'
+import login from '../pages/login/view.js';
 import register from '../pages/register/view.js';
 import home from '../pages/home/view.js';
 

@@ -1,23 +1,29 @@
 import { eventsPost } from './controller.js';
 
 async function renderPosts() {
-    const posts = await firebase.firestore()
-        .collection('postagens')
-        .orderBy('date', 'desc')
-        .get();
+  const posts = await firebase.firestore()
+    .collection('postagens')
+    .orderBy('date', 'desc')
+    .get();
 
-    const listPosts = document.querySelector('#list-posts');
+  const listPosts = document.querySelector('#list-posts');
 
-    listPosts.innerHTML = '';
+  listPosts.innerHTML = '';
 
-    let html = [];
+  const html = [];
 
-    posts.forEach(
-        postRef => {
-            const li = document.createElement('li');
-            const post = postRef.data();
-            
-            li.innerHTML = `
+  posts.forEach(
+    (postRef) => {
+      const li = document.createElement('li');
+      const post = postRef.data();
+      let audience = 'icon-lock-open';
+      if (postRef.data().private) {
+        audience = 'icon-lock-closed';
+      } else {
+        audience = 'icon-lock-open';
+      }
+
+      li.innerHTML = `
                 <p class="message-post">${post.text}</p>
                 <section class="list-buttons">
                     <button class="like-button">
@@ -33,24 +39,22 @@ async function renderPosts() {
                 </section> 
             `;
 
-            li.id = postRef.id;
-            li.classList.add('list');
-            li.post = post;
+      li.id = postRef.id;
+      li.classList.add('list');
+      li.post = post;
 
-            if (postRef.data().private === false) {
-                html.push(li);
-            } 
-            else if (postRef.data().private === true && postRef.data().user === firebase.auth().currentUser.uid) {
-                html.push(li);
-            }
-            
-        },
-    )
+      if (postRef.data().private === false) {
+        html.push(li);
+      } else if (postRef.data().private === true && postRef.data().user === firebase.auth().currentUser.uid) {
+        html.push(li);
+      }
+    },
+  );
 
 
-    listPosts.append(...html);
+  listPosts.append(...html);
 
-    eventsPost(listPosts);
+  eventsPost(listPosts);
 }
 
 export default renderPosts;
