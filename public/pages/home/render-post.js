@@ -12,18 +12,18 @@ async function renderPosts() {
 
   const html = [];
 
-    posts.forEach(
-        postRef => {
-            const li = document.createElement('li');
-            const post = postRef.data();
-            let audience = "icon-lock-open";
-            if (postRef.data().private) {
-                audience = "icon-lock-closed"
-            } else {
-                audience = "icon-lock-open"
-            }
+  posts.forEach(
+    (postRef) => {
+      const li = document.createElement('li');
+      const post = postRef.data();
+      let audience = 'icon-lock-open';
+      if (postRef.data().private) {
+        audience = 'icon-lock-closed';
+      } else {
+        audience = 'icon-lock-open';
+      }
 
-            li.innerHTML = `
+      li.innerHTML = `
                 <p class="message-post">${post.text}</p>
                 <section class="list-buttons">
                     <button class="like-button">
