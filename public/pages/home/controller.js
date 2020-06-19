@@ -1,12 +1,19 @@
 import renderPosts from './render-post.js';
 
 function error(e) {
+<<<<<<< HEAD
   alert('The post audience was changed');
+=======
+>>>>>>> origin
   console.log(e);
 }
 
 function success() {
+<<<<<<< HEAD
   location.hash = 'login';
+=======
+  window.location.hash = 'login';
+>>>>>>> origin
 }
 
 async function loggout(e) {
@@ -16,6 +23,7 @@ async function loggout(e) {
     await firebase.auth().signOut();
 
     success();
+<<<<<<< HEAD
   } catch (e) {
     error(e);
   }
@@ -34,6 +42,13 @@ function eventsPost(listPosts) {
 >>>>>>> Stashed changes
 }
 
+=======
+  } catch (erro) {
+    error(erro);
+  }
+}
+
+>>>>>>> origin
 async function countLikes(e) {
   e.preventDefault();
 
@@ -50,6 +65,7 @@ async function countLikes(e) {
 
 async function editPost(e) {
   e.preventDefault();
+<<<<<<< HEAD
 
   const button = e.target;
   const fieldPost = e.target.parentElement.parentElement.parentElement.querySelector('.message-post');
@@ -70,6 +86,28 @@ async function editPost(e) {
     fieldPost.focus();
   }
 }
+=======
+
+  const fieldPost = e.target.parentElement.parentElement.parentElement.querySelector('.message-post');
+  const db = firebase.firestore();
+  const id = e.target.parentElement.parentElement.parentElement.id;
+
+  if (fieldPost.getAttribute('contentEditable', true)) {
+    fieldPost.setAttribute('contentEditable', false);
+    const textContent = fieldPost.textContent;
+
+    await db.collection('postagens').doc(id).set({
+      ...e.target.parentElement.parentElement.parentElement.post,
+      text: textContent,
+    });
+    renderPosts();
+  } else {
+    fieldPost.setAttribute('contentEditable', true);
+    fieldPost.focus();
+  }
+}
+
+>>>>>>> origin
 
 async function editAudience(e) {
   e.preventDefault();
@@ -81,6 +119,10 @@ async function editAudience(e) {
         ...e.target.parentElement.parentElement.parentElement.post,
         private: !doc.data().private,
       });
+<<<<<<< HEAD
+=======
+      console.log('The post audience was changed');
+>>>>>>> origin
     } else {
       console.log('No such document!');
     }
@@ -97,13 +139,28 @@ async function deletePost(e) {
   await db.collection('postagens').doc(id).delete().then(() => {
     console.log('Document successfully deleted!');
   })
+<<<<<<< HEAD
     .catch((error) => {
+=======
+    .catch(() => {
+>>>>>>> origin
       console.error('Error removing document: ', error);
     });
 
   renderPosts();
 }
 
+<<<<<<< HEAD
+=======
+
+function eventsPost(listPosts) {
+  listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
+  listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
+  listPosts.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletePost));
+  listPosts.querySelectorAll('button.audience-button').forEach(button => button.addEventListener('click', editAudience));
+}
+
+>>>>>>> origin
 async function newPost(e) {
   e.preventDefault();
 
@@ -114,11 +171,19 @@ async function newPost(e) {
       text: e.target.elements.post.value,
       private: e.target.elements.audience.checked,
       likes: 0,
+<<<<<<< HEAD
       date: new Date,
     });
     renderPosts();
   } catch (e) {
     console.log(e);
+=======
+      date: Date.now(),
+    });
+    renderPosts();
+  } catch (erro) {
+    console.log(erro);
+>>>>>>> origin
   }
 }
 
@@ -147,6 +212,7 @@ function privatePost() {
     iconLock.classList.remove('icon-lock-open');
     iconLock.classList.add('icon-lock-closed');
   }
+<<<<<<< HEAD
 }
 
 async function profile(container) {
@@ -172,6 +238,8 @@ async function profile(container) {
       // No user is signed in.
     }
   });
+=======
+>>>>>>> origin
 }
 
 function controllerHome(template) {
@@ -185,7 +253,10 @@ function controllerHome(template) {
   const lock = container.querySelector('#lock');
 
   renderPosts();
+<<<<<<< HEAD
   profile(container);
+=======
+>>>>>>> origin
 
   formPost.addEventListener('submit', newPost);
   buttonLoggout.addEventListener('click', loggout);

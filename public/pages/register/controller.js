@@ -1,12 +1,11 @@
 import registerGmail from '../../scripts/auth.js';
 
 function success() {
-  location.hash = 'home';
+  window.location.hash = 'home';
 }
 
 function error(erro) {
-  console.log(error);
-  alert('Algo aconteceu de errado.');
+  console.log(erro);
 }
 
 async function registerEmailAndPassword(e) {
@@ -20,8 +19,8 @@ async function registerEmailAndPassword(e) {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
 
     success();
-  } catch (e) {
-    error(e);
+  } catch (erro) {
+    error(erro);
   }
 }
 

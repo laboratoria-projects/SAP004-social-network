@@ -5,7 +5,7 @@ function error(e) {
 }
 
 function success() {
-  location.hash = '#home';
+  window.location.hash = '#home';
 }
 
 async function login(e) {
@@ -21,8 +21,13 @@ async function login(e) {
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
     success();
+<<<<<<< HEAD
   } catch (e) {
     error(e);
+=======
+  } catch (erro) {
+    error(erro);
+>>>>>>> origin
   }
 }
 
