@@ -48,14 +48,10 @@ async function renderPosts() {
 
       if (postRef.data().private === false) {
         html.push(li);
-<<<<<<< HEAD
-      } else if (postRef.data().private === true && postRef.data().user === firebase.auth().currentUser.uid) {
-=======
       } else if (
         postRef.data().private === true
         && postRef.data().user === firebase.auth().currentUser.uid
       ) {
->>>>>>> origin
         html.push(li);
       }
     },

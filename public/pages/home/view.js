@@ -46,7 +46,3 @@ export default () => {
 
   return controllerHome(template);
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> origin
