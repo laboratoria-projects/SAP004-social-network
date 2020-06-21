@@ -1,3 +1,5 @@
+import view from './view.js';
+
 async function renderProfile(container) {
   await firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -85,7 +87,7 @@ function uploadAvatar() {
         console.log('File available at', downloadURL);
         editPhoto(downloadURL);
       });
-    });
+    });        
 }
 
 async function editPhoto(photoURL) {
