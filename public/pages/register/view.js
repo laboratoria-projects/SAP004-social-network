@@ -1,4 +1,4 @@
-import controllerRegister from './controller.js';
+import controllerRegister from './register.js';
 
 export default () => {
   const template = `

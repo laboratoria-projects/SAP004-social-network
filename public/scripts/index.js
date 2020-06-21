@@ -2,19 +2,25 @@ import routes from './routes.js';
 
 const main = document.querySelector('#root');
 
-const renderPage = () => {
-  main.innerHTML = '';
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user === null && (location.hash === '#login' || location.hash === '#register' || !location.hash)) {
-      location.hash = location.hash || 'login';
+const checkUserlogged = () => {
+  const user = firebase.auth().currentUser
+    const internalPages = ["#home", "#profile"];
+    if (user != null && internalPages.includes(location.hash)) {
+      return true;
     } else {
-      location.hash = 'home';
+      return false;
     }
-
-    main.appendChild(routes[location.hash]);
-  });
 };
 
-window.addEventListener('load', renderPage);
+function renderPage() {
+  let page = window.location.hash.replace("#", "");
+  main.innerHTML = '';
+  if (!checkUserlogged()){
+    page = 'login';
+  }
+  
+  main.appendChild(routes[page]);
+}
 
+window.addEventListener('load', renderPage);
 window.addEventListener('hashchange', renderPage);

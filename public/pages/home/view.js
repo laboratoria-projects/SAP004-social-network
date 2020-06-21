@@ -1,4 +1,4 @@
-import controllerHome from './controller.js';
+import controllerHome from './home.js';
 
 export default () => {
   const template = `
@@ -6,11 +6,8 @@ export default () => {
         <i id="icon-menu" class="icon-menu menu"></i>
         <nav id="nav" class="container-menu-burguer disable">
           <ul class="list-menu">
-            <li>
-              Option 1
-            </li>
-            <li>
-              Option 2
+            <li id="profile">
+              <a href="/#profile">Edit profile</a>
             </li>
             <li class= "loggout-button" id="loggout">
                 Loggout
@@ -39,7 +36,7 @@ export default () => {
         <p id="user-name">User Name</p>
         <p id="user-email">User E-mail</p>
         <figure >
-          <img src="imagem.jpg" id="user-avatar" alt="Profile Photo">	
+          <img src="" id="user-avatar" alt="Profile Photo">	
         </figure>
     </section>
   `;

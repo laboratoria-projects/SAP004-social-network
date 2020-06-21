@@ -15,17 +15,10 @@ async function loggout(e) {
     await firebase.auth().signOut();
 
     success();
-    
+
   } catch (e) {
     error(e);
   }
-}
-
-function eventsPost(listPosts) {
-  listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
-  listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
-  listPosts.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletePost));
-  listPosts.querySelectorAll('button.audience-button').forEach(button => button.addEventListener('click', editAudience));
 }
 
 async function countLikes(e) {
@@ -156,23 +149,15 @@ async function profile(container) {
   await firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       user.providerData.forEach(function (profile) {
-        console.log("Sign-in provider: " + profile.providerId);
-        console.log("  Provider-specific UID: " + profile.uid);
-        console.log("  Name: " + profile.displayName);
-        console.log("  Email: " + profile.email);
-        console.log("  Photo URL: " + profile.photoURL);
 
-        const name = "Lua Veronica";
         const userNameInput = container.querySelector("#user-name");
         const userEmailInput = container.querySelector("#user-email");
         const userPhotoInput = container.querySelector("#user-avatar")
 
-        userNameInput.innerHTML = name;
+        userNameInput.innerHTML = profile.displayName;
         userEmailInput.innerHTML = profile.email;
         userPhotoInput.src = profile.photoURL;
       });
-    } else {
-      // No user is signed in.
     }
   });
 }
@@ -186,8 +171,11 @@ function controllerHome(template) {
   const buttonLoggout = container.querySelector('#loggout');
   const iconMenu = container.querySelector('#icon-menu');
   const lock = container.querySelector('#lock');
+  try {
+    renderPosts();
+  } catch (error) {
 
-  renderPosts();
+  }
   profile(container);
 
   formPost.addEventListener('submit', newPost);
