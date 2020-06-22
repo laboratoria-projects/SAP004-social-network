@@ -16,7 +16,7 @@ const checkUserlogged = () => {
 function renderPage() {
   let page = window.location.hash.replace("#", "");
   main.innerHTML = '';
-  if (!checkUserlogged()) {
+  if (!checkUserlogged() || page == "") {
     page = 'login';
   }
 
