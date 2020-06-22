@@ -1,4 +1,5 @@
 import { eventsPost } from './home.js';
+import { renderComment, printComment } from './comments.js';
 
 async function renderPosts() {
   const posts = await firebase.firestore()
@@ -42,11 +43,18 @@ async function renderPosts() {
                         <i id="icon-lock" class="${audience}"></i>
                     </button>
                 </section> 
+                <ul class="list-comments"></ul>
+                <form class="comments">
+                  <input name="comment" type="text" placeholder="Comments">
+                  <button type="submit">Comment</button>
+                </form>
             `;
 
         li.id = postRef.id;
         li.classList.add('list');
         li.post = post;
+
+        printComment(li);
 
         if (postRef.data().private === false) {
           html.push(li);
@@ -63,6 +71,8 @@ async function renderPosts() {
     listPosts.append(...html);
 
     eventsPost(listPosts);
+    renderComment();
+
   } catch (error) {
 
   }

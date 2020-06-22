@@ -1,4 +1,4 @@
-import controllerProfile from './edit-profile.js';
+import controllerProfile from './profile.js';
 
 export default () => {
   const template = `
@@ -15,6 +15,10 @@ export default () => {
           <input value="Password" type="password" id="user-pwd"/>
           <button type="submit" id="update-user-pwd">Update</button>
       </main>
+
+      <section class="mainly-home">
+        <ul id="personal-posts" class="post-feed"></ul>
+      </section>
     `;
   return controllerProfile(template);
 };

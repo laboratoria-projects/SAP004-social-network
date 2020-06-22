@@ -35,6 +35,20 @@ async function countLikes(e) {
   renderPosts();
 }
 
+async function likes(e) {
+  e.preventDefault();
+
+  const db = firebase.firestore();
+
+  const doc = await db.collection('comentarios').doc(e.target.parentElement.id);
+
+  const post = await doc.get();
+
+  await doc.set({ likes: post.data().likes + 1 }, { merge: true });
+
+  renderPosts();
+}
+
 async function editPost(e) {
   e.preventDefault();
 
@@ -57,6 +71,27 @@ async function editPost(e) {
   }
 }
 
+async function edit(e) {
+  e.preventDefault();
+
+  const fieldPost = e.target.parentElement.parentElement.querySelector('.message');
+  const db = firebase.firestore();
+  const id = e.target.parentElement.parentElement.id;
+
+  if (fieldPost.getAttribute('contentEditable', true)) {
+    fieldPost.setAttribute('contentEditable', false);
+    const textContent = fieldPost.textContent;
+
+    await db.collection('comentarios').doc(id).set(
+      { text: textContent }, { merge: true },
+    );
+
+    renderPosts();
+  } else {
+    fieldPost.setAttribute('contentEditable', true);
+    fieldPost.focus();
+  }
+}
 
 async function editAudience(e) {
   e.preventDefault();
@@ -92,12 +127,33 @@ async function deletePost(e) {
   renderPosts();
 }
 
+async function deletes(e) {
+  e.preventDefault();
+
+  const db = await firebase.firestore();
+  const id = e.target.parentElement.parentElement.id;
+
+  await db.collection('comentarios').doc(id).delete().then(() => {
+    console.log('Document successfully deleted!');
+  })
+    .catch(() => {
+      console.error('Error removing document: ', error);
+    });
+
+  renderPosts();
+}
 
 function eventsPost(listPosts) {
   listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
   listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
   listPosts.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletePost));
   listPosts.querySelectorAll('button.audience-button').forEach(button => button.addEventListener('click', editAudience));
+}
+
+function eventsComments(listComments) {
+  listComments.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', likes));
+  listComments.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', edit));
+  listComments.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletes));
 }
 
 async function newPost(e) {
@@ -187,4 +243,4 @@ function controllerHome(template) {
 }
 
 export default controllerHome;
-export { eventsPost };
+export { eventsPost, eventsComments };

@@ -1,4 +1,4 @@
-import view from './view.js';
+import renderOnlyUserPosts from './personal-feed.js';
 
 async function renderProfile(container) {
   await firebase.auth().onAuthStateChanged(function (user) {
@@ -111,6 +111,7 @@ function controllerProfile(template) {
   container.querySelector("#update-user-pwd").addEventListener('click', editPwd);
   container.querySelector("#update-user-photo").addEventListener('click', uploadAvatar);
 
+  renderOnlyUserPosts();
   renderProfile(container);
 
   return container;
