@@ -30,7 +30,7 @@ async function renderPosts() {
                     <button class="like-button">
                         ${post.likes}
                         <i class="icon-heart heart-clicked"></i>
-                    <button>
+                    </button>
                     <button class="edite-button">
                         <i class="icon-pencil"></i>
                     </button>

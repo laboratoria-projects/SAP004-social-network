@@ -1,7 +1,7 @@
+import controllerPersonalPosts from './controller.js'
 
 export default () => {
-    const container = document.createElement('div');
-    const template = `
+  const template = `
                   <header class="nav-home">
                     <i id="icon-menu" class="icon-menu menu"></i>
                     <nav id="nav" class="container-menu-burguer disable">
@@ -15,7 +15,6 @@ export default () => {
                     <ul id="personal-posts" class="post-feed"></ul>
                   </main>
                   `;
-    container.innerHTML = template;
-    return container;
+  return controllerPersonalPosts(template);
 }
    
