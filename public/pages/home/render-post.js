@@ -24,12 +24,13 @@ async function renderPosts() {
       }
 
       li.innerHTML = `
+                <h3 class="user-name">${post.user}</h3>
                 <p class="message-post">${post.text}</p>
                 <section class="list-buttons">
                     <button class="like-button">
                         ${post.likes}
                         <i class="icon-heart heart-clicked"></i>
-                    <button>
+                    </button>
                     <button class="edite-button">
                         <i class="icon-pencil"></i>
                     </button>
@@ -57,10 +58,19 @@ async function renderPosts() {
     },
   );
 
-
   listPosts.append(...html);
-
   eventsPost(listPosts);
+  // if (postRef.data().user === firebase.auth().currentUser.uid) {
+    
+  // } 
+  // else {
+  //   (document.querySelector('.edite-button')).style.display = 'none';
+  //   (document.querySelector('.delete-button')).style.display = 'none';
+  //   (document.querySelector('.audience-button')).style.display = 'none';
+  //   listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
+  // }
+
 }
 
 export default renderPosts;
+

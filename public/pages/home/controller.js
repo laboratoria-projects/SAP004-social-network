@@ -92,7 +92,6 @@ async function deletePost(e) {
   renderPosts();
 }
 
-
 function eventsPost(listPosts) {
   listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
   listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
@@ -117,7 +116,6 @@ async function newPost(e) {
     console.log(erro);
   }
 }
-
 
 function stateMenu(e) {
   e.preventDefault();
