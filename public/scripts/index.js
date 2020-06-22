@@ -7,8 +7,10 @@ const renderPage = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user === null && (location.hash === '#login' || location.hash === '#register' || !location.hash)) {
       location.hash = location.hash || 'login';
-    } else {
-      location.hash = 'home';
+    } else if (location.hash === '#home') {
+      location.hash = '#home';
+    } else if (location.hash === '#personal'){
+      location.hash = '#personal';
     }
 
     main.appendChild(routes[location.hash]);

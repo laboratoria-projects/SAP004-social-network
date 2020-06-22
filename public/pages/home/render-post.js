@@ -24,6 +24,7 @@ async function renderPosts() {
       }
 
       li.innerHTML = `
+                <h3 class="user-name">${post.user}</h3>
                 <p class="message-post">${post.text}</p>
                 <section class="list-buttons">
                     <button class="like-button">

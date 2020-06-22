@@ -9,8 +9,8 @@ export default () => {
             <li>
               Option 1
             </li>
-            <li>
-              Option 2
+            <li id="personal-posts">
+              Personal Feed
             </li>
             <li class= "loggout-button" id="loggout">
                 Loggout

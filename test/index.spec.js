@@ -1,9 +1,20 @@
-// importamos as funções que iremos testar
-import { greeting } from '../public/pages/home/data.js';
+// import {
+//   countLikes
+// } from '../public/pages/home/controller.js';
 
-describe('Greeting', () => {
-  it('Deveria retornar "Oi Maria! Que bom ver você aqui!" quando passado "Maria" como parâmetros', () => {
-    const message = 'Oi Maria! Que bom ver você aqui!';
-    expect(greeting('Maria')).toEqual(message);
-  });
-});
+// describe('countLikes', () => {
+//   it('is a function', () => {
+//     expect(typeof countLikes).toBe('function');
+//   });
+//   it('Deveria retornar número de likes + 1', () => {
+//     expect(countLikes(likes)).toEqual(likes + 1);
+//   });
+// });
+//chamar função 
+// test('the data is peanut butter', async () => {
+//   await expect(fetchData()).resolves.toBe('peanut butter');
+// });
+
+// test('the fetch fails with an error', async () => {
+//   await expect(fetchData()).rejects.toThrow('error');
+// });
