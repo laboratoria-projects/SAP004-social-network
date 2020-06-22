@@ -147,6 +147,7 @@ body {
 
 .mainly-home {
   padding: 0px 20px;
+  justify-content: space-evenly;
 }
 
 .post-form {
@@ -256,6 +257,48 @@ body {
 
   .header {
     width: 40%;
+  }
+
+  .mainly-home {
+    display: flex;
+  }
+  
+  .box__profile {
+    display: flex;
+    margin-top: 50px;
+    border: 1px solid #3b324f85;
+    border-radius: 5px;
+    height: 200px;
+    align-items: center;
+    width: 25%;
+    justify-content: space-around;
+  }
+
+  .profile__avatar {
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile__avatar img {
+    width: 270px;
+    height: auto;
+  }
+
+  .info__profile {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .info__profile h2 {
+    font-size: 30px;
+    font-weight: 900;
   }
 
   .logo-desktop {

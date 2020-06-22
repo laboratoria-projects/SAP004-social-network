@@ -18,7 +18,7 @@ export default () => {
 
       <section class="mainly-home">
         <ul id="personal-posts" class="post-feed"></ul>
-      </section>
+      </main>
     `;
   return controllerProfile(template);
 };

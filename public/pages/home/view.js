@@ -17,28 +17,33 @@ export default () => {
         <h1 class="title-knowledge">Knowledge</h1>
     </header>
     <main class="mainly-home">
-      <form id="form-post" class="post-form">
-          <input class="post-input" type="text" name="post" placeholder="Write your post!" />
-          <section class="buttons-post">
-            <section>
-              <label id="lock" class="private-checkbox" for="private-selector">
-                <i id="icon-lock" class="icon-lock-open"></i>
-              </label>
-              <input class="selector-checkbox" type="checkbox" id="private-selector" name="audience">
-            </section>
-              <button class="submit-post-button" type="submit">Share</button>
-          </section>
-      </form>
-
-      <ul id="list-posts" class="post-feed"></ul>
-    </main>
-    <section>
-        <p id="user-name">User Name</p>
-        <p id="user-email">User E-mail</p>
-        <figure >
+      <section class="box__profile">
+        <figure class="profile__avatar">
           <img src="" id="user-avatar" alt="Profile Photo">	
         </figure>
-    </section>
+        <section class="info__profile"> 
+          <h2 id="user-name">User Name</h2>
+          <p id="user-email">User E-mail</p>
+        </section> 
+      </section>
+      <section>
+        <form id="form-post" class="post-form">
+            <input class="post-input" type="text" name="post" placeholder="Write your post!" />
+            <section class="buttons-post">
+              <section>
+                <label id="lock" class="private-checkbox" for="private-selector">
+                  <i id="icon-lock" class="icon-lock-open"></i>
+                </label>
+                <input class="selector-checkbox" type="checkbox" id="private-selector" name="audience">
+              </section>
+                <button class="submit-post-button" type="submit">Share</button>
+            </section>
+        </form>
+
+        <ul id="list-posts" class="post-feed"></ul>
+      </section>
+    </main>
+  
   `;
 
   return controllerHome(template);
