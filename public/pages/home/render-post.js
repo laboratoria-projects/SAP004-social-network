@@ -16,6 +16,12 @@ async function renderPosts() {
     (postRef) => {
       const li = document.createElement('li');
       const post = postRef.data();
+      let audience = 'icon-lock-open';
+      if (postRef.data().private) {
+        audience = 'icon-lock-closed';
+      } else {
+        audience = 'icon-lock-open';
+      }
 
       li.innerHTML = `
                 <p class="message-post">${post.text}</p>
@@ -29,6 +35,9 @@ async function renderPosts() {
                     </button>
                     <button class="delete-button">
                         <i class="icon-bin"></i>
+                    </button>
+                    <button class="audience-button">
+                        <i id="icon-lock" class="${audience}"></i>
                     </button>
                 </section> 
             `;

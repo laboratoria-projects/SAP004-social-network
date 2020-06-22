@@ -57,6 +57,25 @@ async function editPost(e) {
   }
 }
 
+
+async function editAudience(e) {
+  e.preventDefault();
+  const db = firebase.firestore();
+  const id = e.target.parentElement.parentElement.parentElement.id;
+  await db.collection('postagens').doc(id).get().then((doc) => {
+    if (doc.exists) {
+      db.collection('postagens').doc(id).set({
+        ...e.target.parentElement.parentElement.parentElement.post,
+        private: !doc.data().private,
+      });
+      console.log('The post audience was changed');
+    } else {
+      console.log('No such document!');
+    }
+  });
+  renderPosts();
+}
+
 async function deletePost(e) {
   e.preventDefault();
 
@@ -78,6 +97,7 @@ function eventsPost(listPosts) {
   listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
   listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
   listPosts.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletePost));
+  listPosts.querySelectorAll('button.audience-button').forEach(button => button.addEventListener('click', editAudience));
 }
 
 async function newPost(e) {
