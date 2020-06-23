@@ -1,4 +1,4 @@
-import controllerLogin from './controller.js';
+import controllerLogin from './login.js';
 
 export default () => {
   const template = `
