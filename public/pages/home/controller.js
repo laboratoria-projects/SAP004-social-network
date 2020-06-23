@@ -20,6 +20,10 @@ async function loggout(e) {
   }
 }
 
+function personalFeed() {
+  window.location.hash = 'personal';
+}
+
 async function countLikes(e) {
   e.preventDefault();
 
@@ -29,7 +33,7 @@ async function countLikes(e) {
 
   const post = await doc.get();
 
-  await doc.set({ likes: post.data().likes + 1 }, { merge: true });
+  await doc.update({ likes: firebase.firestore.FieldValue.increment(1)});
 
   renderPosts();
 }
@@ -92,6 +96,7 @@ async function deletePost(e) {
   renderPosts();
 }
 
+
 function eventsPost(listPosts) {
   listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
   listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
@@ -116,6 +121,7 @@ async function newPost(e) {
     console.log(erro);
   }
 }
+
 
 function stateMenu(e) {
   e.preventDefault();
@@ -152,12 +158,14 @@ function controllerHome(template) {
 
   const formPost = container.querySelector('#form-post');
   const buttonLoggout = container.querySelector('#loggout');
+  const buttonpersonalFeed = container.querySelector('#personal-posts')
   const iconMenu = container.querySelector('#icon-menu');
   const lock = container.querySelector('#lock');
 
   renderPosts();
 
   formPost.addEventListener('submit', newPost);
+  buttonpersonalFeed.addEventListener('click', personalFeed)
   buttonLoggout.addEventListener('click', loggout);
   iconMenu.addEventListener('click', stateMenu);
   lock.addEventListener('click', privatePost);
