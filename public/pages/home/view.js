@@ -9,8 +9,8 @@ export default () => {
             <li id="profile">
               <a href="/#profile">Edit profile</a>
             </li>
-            <li class= "loggout-button" id="loggout">
-                Loggout
+            <li class= "logout-button" id="logout">
+                Logout
             </li>
           </ul>
         </nav>

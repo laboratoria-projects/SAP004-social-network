@@ -213,6 +213,89 @@ body {
   margin: 0px 3px;
 }
 
+.mainly-home {
+  display: unset;
+}
+
+.box__profile {
+    display: inline-flex;
+    margin-top: 50px;
+    border: 1px solid #3b324f85;
+    border-radius: 5px;
+    height: 200px;
+    align-items: center;
+    width: 90%;
+    justify-content: space-around;
+}
+
+.profile__avatar {
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+}
+
+.profile__avatar img {
+  width: 270px;
+  height: auto;
+}
+
+.info__profile {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info__profile h2 {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.info__profile p {
+  font-size: 10px;
+}
+
+.user__edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user__avatar {
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+}
+
+.user__avatar img {
+  border-radius: 100%;
+  width: 270px;
+  height: auto;
+}
+
+.user__data {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.input__avatar {
+  background-color: #ece1e1;
+  border: 2px solid #ad92e8;
+  border-radius: 20px;
+  font-family: 'Quicksand', sans-serif !important;
+  height: 25px;
+  margin-bottom: 20px;
+  width: 240px;
+}
+
 
 @media screen and (min-width: 800px) {
   .logo-desktop {
@@ -301,6 +384,10 @@ body {
     font-weight: 900;
   }
 
+  .info__profile p {
+    font-size: 15px;
+  }
+
   .logo-desktop {
     width: 100%;
   }
@@ -325,5 +412,46 @@ body {
 
   .back {
     margin-top: 20px;
+  }
+  .mainly-home {
+    display: unset;
+  }
+
+  .box__profile {
+      display: inline-flex;
+      margin-top: 50px;
+      border: 1px solid #3b324f85;
+      border-radius: 5px;
+      height: 200px;
+      align-items: center;
+      width: 90%;
+      justify-content: space-around;
+  }
+  
+  .profile__avatar {
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .profile__avatar img {
+    width: 270px;
+    height: auto;
+  }
+  
+  .info__profile {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .info__profile h2 {
+    font-size: 20px;
+    font-weight: 900;
   }
 }

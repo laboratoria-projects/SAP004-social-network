@@ -8,7 +8,7 @@ function success() {
   window.location.hash = 'login';
 }
 
-async function loggout(e) {
+async function logout(e) {
   try {
     e.preventDefault();
 
@@ -224,7 +224,7 @@ function controllerHome(template) {
   container.innerHTML = template;
 
   const formPost = container.querySelector('#form-post');
-  const buttonLoggout = container.querySelector('#loggout');
+  const buttonLogout = container.querySelector('#logout');
   const iconMenu = container.querySelector('#icon-menu');
   const lock = container.querySelector('#lock');
   try {
@@ -235,7 +235,7 @@ function controllerHome(template) {
   profile(container);
 
   formPost.addEventListener('submit', newPost);
-  buttonLoggout.addEventListener('click', loggout);
+  buttonLogout.addEventListener('click', logout);
   iconMenu.addEventListener('click', stateMenu);
   lock.addEventListener('click', privatePost);
 
