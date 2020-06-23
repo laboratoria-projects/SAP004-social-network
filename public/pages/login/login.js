@@ -16,10 +16,12 @@ async function login(e) {
     const email = form.email.value;
     const password = form.password.value;
 
+
     await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
     success();
+
   } catch (erro) {
     error(erro);
   }

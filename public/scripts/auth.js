@@ -13,5 +13,4 @@ function registerGmail(e) {
     );
 }
 
-
 export default registerGmail;
