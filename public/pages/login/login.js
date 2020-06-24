@@ -21,7 +21,6 @@ async function login(e) {
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
     success();
-
   } catch (erro) {
     error(erro);
   }
