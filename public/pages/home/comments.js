@@ -20,12 +20,12 @@ export async function printComment(li) {
       if (commentData.postId === li.id) {
         list.innerHTML = `
           <h2>${commentData.user} diz:</h2>
-          <p class="message">${commentData.text}</p>
+          <p class="message-comment">${commentData.text}</p>
           <button class="like-button">
           ${commentData.likes}
           <i class="icon-heart heart-clicked"></i>
           <button>
-          <button class="edite-button">
+          <button class="edit-button">
               <i class="icon-pencil"></i>
           </button>
           <button class="delete-button">
@@ -36,13 +36,17 @@ export async function printComment(li) {
       }
 
       list.id = commentRef.id;
-      list.classList.add('commentPost');
+      list.classList.add('comment-post');
     },
   );
 
   listOfComments.append(...html);
 
   eventsComments(listOfComments);
+
+  if (listOfComments.querySelector('.comment-post') != null) {
+    listOfComments.style.height = '90px';
+  }
 }
 
 async function newComment(e) {
@@ -55,6 +59,7 @@ async function newComment(e) {
       user: firebase.auth().currentUser.uid,
       text: e.target.elements.comment.value,
       likes: 0,
+      usersLikesPerComments: [],
       date: Date.now(),
     });
 

@@ -104,6 +104,7 @@ async function editPhoto(photoURL) {
 
 function controllerProfile(template) {
   const container = document.createElement('section');
+  container.classList.add("profile-section");
   container.innerHTML = template;
 
   container.querySelector("#update-user-name").addEventListener('click', editName);

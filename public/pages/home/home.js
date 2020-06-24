@@ -16,7 +16,7 @@ async function logout(e) {
 
     success();
 
-  } catch (e) {
+  } catch (erro) {
     error(e);
   }
 }
@@ -24,14 +24,24 @@ async function logout(e) {
 async function countLikes(e) {
   e.preventDefault();
 
-  const db = firebase.firestore();
-
-  const doc = await db.collection('postagens').doc(e.target.parentElement.parentElement.id);
+  const doc = await firebase.firestore().collection('postagens')
+    .doc(e.target.parentElement.parentElement.id);
 
   const post = await doc.get();
 
-  await doc.set({ likes: post.data().likes + 1 }, { merge: true });
-
+  const usersId = post.data().usersLikesPerPost;
+  const currentUser = firebase.auth().currentUser.uid;
+  if (usersId.includes(currentUser)) {
+    await doc.update({
+      likes: post.data().likes - 1,
+      usersLikesPerPost: firebase.firestore.FieldValue.arrayRemove(currentUser)
+    });
+  } else {
+    await doc.update({
+      likes: post.data().likes + 1,
+      usersLikesPerPost: firebase.firestore.FieldValue.arrayUnion(currentUser)
+    })
+  };
   renderPosts();
 }
 
@@ -42,9 +52,21 @@ async function likes(e) {
 
   const doc = await db.collection('comentarios').doc(e.target.parentElement.id);
 
-  const post = await doc.get();
+  const comments = await doc.get();
 
-  await doc.set({ likes: post.data().likes + 1 }, { merge: true });
+  const usersId = comments.data().usersLikesPerComments;
+  const currentUser = firebase.auth().currentUser.uid;
+  if (usersId.includes(currentUser)) {
+    await doc.update({
+      likes: comments.data().likes - 1,
+      usersLikesPerComments: firebase.firestore.FieldValue.arrayRemove(currentUser)
+    });
+  } else {
+    await doc.update({
+      likes: comments.data().likes + 1,
+      usersLikesPerComments: firebase.firestore.FieldValue.arrayUnion(currentUser)
+    })
+  };
 
   renderPosts();
 }
@@ -145,14 +167,14 @@ async function deletes(e) {
 
 function eventsPost(listPosts) {
   listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
-  listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
+  listPosts.querySelectorAll('button.edit-button').forEach(button => button.addEventListener('click', editPost));
   listPosts.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletePost));
   listPosts.querySelectorAll('button.audience-button').forEach(button => button.addEventListener('click', editAudience));
 }
 
 function eventsComments(listComments) {
   listComments.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', likes));
-  listComments.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', edit));
+  listComments.querySelectorAll('button.edit-button').forEach(button => button.addEventListener('click', edit));
   listComments.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletes));
 }
 
@@ -166,6 +188,7 @@ async function newPost(e) {
       text: e.target.elements.post.value,
       private: e.target.elements.audience.checked,
       likes: 0,
+      usersLikesPerPost: [],    
       date: Date.now(),
     });
     renderPosts();
@@ -227,11 +250,9 @@ function controllerHome(template) {
   const buttonLogout = container.querySelector('#logout');
   const iconMenu = container.querySelector('#icon-menu');
   const lock = container.querySelector('#lock');
-  try {
-    renderPosts();
-  } catch (error) {
-
-  }
+  
+  renderPosts();
+ 
   profile(container);
 
   formPost.addEventListener('submit', newPost);
