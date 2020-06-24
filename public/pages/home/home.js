@@ -15,7 +15,6 @@ async function logout(e) {
     await firebase.auth().signOut();
 
     success();
-
   } catch (erro) {
     error(e);
   }
@@ -34,14 +33,14 @@ async function countLikes(e) {
   if (usersId.includes(currentUser)) {
     await doc.update({
       likes: post.data().likes - 1,
-      usersLikesPerPost: firebase.firestore.FieldValue.arrayRemove(currentUser)
+      usersLikesPerPost: firebase.firestore.FieldValue.arrayRemove(currentUser),
     });
   } else {
     await doc.update({
       likes: post.data().likes + 1,
-      usersLikesPerPost: firebase.firestore.FieldValue.arrayUnion(currentUser)
-    })
-  };
+      usersLikesPerPost: firebase.firestore.FieldValue.arrayUnion(currentUser),
+    });
+  }
   renderPosts();
 }
 
@@ -59,14 +58,14 @@ async function likes(e) {
   if (usersId.includes(currentUser)) {
     await doc.update({
       likes: comments.data().likes - 1,
-      usersLikesPerComments: firebase.firestore.FieldValue.arrayRemove(currentUser)
+      usersLikesPerComments: firebase.firestore.FieldValue.arrayRemove(currentUser),
     });
   } else {
     await doc.update({
       likes: comments.data().likes + 1,
-      usersLikesPerComments: firebase.firestore.FieldValue.arrayUnion(currentUser)
-    })
-  };
+      usersLikesPerComments: firebase.firestore.FieldValue.arrayUnion(currentUser),
+    });
+  }
 
   renderPosts();
 }
@@ -188,7 +187,7 @@ async function newPost(e) {
       text: e.target.elements.post.value,
       private: e.target.elements.audience.checked,
       likes: 0,
-      usersLikesPerPost: [],    
+      usersLikesPerPost: [],
       date: Date.now(),
     });
     renderPosts();
@@ -225,17 +224,16 @@ function privatePost() {
 }
 
 async function profile(container) {
-  await firebase.auth().onAuthStateChanged(function (user) {
+  await firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      user.providerData.forEach(function (profile) {
+      user.providerData.forEach((userProfile) => {
+        const userNameInput = container.querySelector('#user-name');
+        const userEmailInput = container.querySelector('#user-email');
+        const userPhotoInput = container.querySelector('#user-avatar');
 
-        const userNameInput = container.querySelector("#user-name");
-        const userEmailInput = container.querySelector("#user-email");
-        const userPhotoInput = container.querySelector("#user-avatar")
-
-        userNameInput.innerHTML = profile.displayName;
-        userEmailInput.innerHTML = profile.email;
-        userPhotoInput.src = profile.photoURL;
+        userNameInput.innerHTML = userProfile.displayName;
+        userEmailInput.innerHTML = userProfile.email;
+        userPhotoInput.src = userProfile.photoURL;
       });
     }
   });
@@ -250,9 +248,9 @@ function controllerHome(template) {
   const buttonLogout = container.querySelector('#logout');
   const iconMenu = container.querySelector('#icon-menu');
   const lock = container.querySelector('#lock');
-  
+
   renderPosts();
- 
+
   profile(container);
 
   formPost.addEventListener('submit', newPost);

@@ -1,6 +1,5 @@
-import {
-  eventsPost
-} from '../home/home.js'
+import { eventsPost } from '../home/home.js';
+import { renderComment, printComment } from '../home/comments.js';
 
 async function renderOnlyUserPosts() {
   const postes = await firebase.firestore()
@@ -26,14 +25,18 @@ async function renderOnlyUserPosts() {
                           <i class="icon-bin"></i>
                         </button>
                       </section> 
+                      <ul class="list-comments"></ul>
                       `;
         li.id = post.id;
         li.classList.add('list');
         li.post = post.data();
         ul.appendChild(li);
+        printComment(li);
         eventsPost(ul);
+        renderComment();
       }
-    });
+    },
+  );
 }
 
 export default renderOnlyUserPosts;

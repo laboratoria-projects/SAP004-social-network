@@ -19,12 +19,11 @@ export async function printComment(li) {
 
       if (commentData.postId === li.id) {
         list.innerHTML = `
-          <h2>${commentData.user} diz:</h2>
           <p class="message-comment">${commentData.text}</p>
           <button class="like-button">
-          ${commentData.likes}
-          <i class="icon-heart heart-clicked"></i>
-          <button>
+            ${commentData.likes}
+            <i class="icon-heart heart-clicked"></i>
+          </button>
           <button class="edit-button">
               <i class="icon-pencil"></i>
           </button>

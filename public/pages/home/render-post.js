@@ -33,7 +33,7 @@ async function renderPosts() {
                     <button class="like-button">
                         ${post.likes}
                         <i class="icon-heart heart-clicked"></i>
-                    <button>
+                    </button>
                     <button class="edit-button">
                         <i class="icon-pencil"></i>
                     </button>
@@ -52,19 +52,19 @@ async function renderPosts() {
             `;
         } else {
           li.innerHTML = `
-                      <p class="message-post">${post.text}</p>
-                      <section class="list-buttons">
-                          <button class="like-button">
-                              ${post.likes}
-                          <i class="icon-heart heart-clicked"></i>
-                          </button>
-                          </section> 
-                          <ul class="list-comments"></ul>
-                          <form class="comments">
-                            <input name="comment" type="text" placeholder="Comments">
-                            <button type="submit">Comment</button>
-                          </form>
-                      `;
+            <p class="message-post">${post.text}</p>
+            <section class="list-buttons">
+                <button class="like-button">
+                    ${post.likes}
+                <i class="icon-heart heart-clicked"></i>
+                </button>
+                </section> 
+                <ul class="list-comments"></ul>
+                <form class="comments">
+                  <input name="comment" type="text" placeholder="Comments">
+                  <button type="submit">Comment</button>
+                </form>
+            `;
         }
 
         li.id = postRef.id;
@@ -89,7 +89,6 @@ async function renderPosts() {
 
     eventsPost(listPosts);
     renderComment();
-
   } catch (error) {
     console.log(error);
   }
