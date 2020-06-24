@@ -28,6 +28,7 @@ export default () => {
 
     <div class="user__data">
       <div class="profile-edits">
+        <label class="label-photo" for="user-photo">Choose photo</label>
         <input type="file" name="avatar" class="choose-photo" id="user-photo" accept="image/png, image/jpeg" />
         <button type="submit" class="profile__button" id="update-user-photo">Update</button>
       </div>

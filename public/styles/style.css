@@ -276,7 +276,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%;
+  width: 100%;
 }
 
 .user__avatar {
@@ -397,6 +397,28 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#user-photo {
+  display: none;
+}
+
+.label-photo {
+  background-color: #ad91e8;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin: 10px;
+  padding: 6px 20px;
+  width: 120px;
+}
+
+.profile-edits {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -418,6 +440,14 @@ body {
 @media screen and (min-width: 800px) {
   .home-posts {
     width: 45%;
+  }
+
+  .post-profile {
+    width: 50%;
+  }
+
+  .user__edit {
+    width: 30%;
   }
 
   .logo-desktop {
