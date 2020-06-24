@@ -21,34 +21,43 @@ async function loggout(e) {
   }
 }
 
-function personalFeed() {
-  window.location.hash = 'personal';
-}
-
 async function countLikes(e) {
   e.preventDefault();
 
-  const db = firebase.firestore();
-
-  const doc = await db.collection('postagens').doc(e.target.parentElement.parentElement.id);
-
+  const doc = await firebase.firestore().collection('postagens').doc(e.target.parentElement.parentElement.id);
   const post = await doc.get();
 
-  await doc.update({ likes: firebase.firestore.FieldValue.increment(1)});
+  const usersId = post.data().usersLikesPerPost;
+  const currentUser = firebase.auth().currentUser.uid;
+  if (usersId.includes(currentUser)) {
+    await doc.update({
+      likes: post.data().likes - 1,
+      usersLikesPerPost: firebase.firestore.FieldValue.arrayRemove(currentUser)
+    });
+  } else {
+    await doc.update({
+      likes: post.data().likes + 1,
+      usersLikesPerPost: firebase.firestore.FieldValue.arrayUnion(currentUser)
+    })
+  };
 
   renderPosts();
 }
 
 async function likes(e) {
   e.preventDefault();
-
   const db = firebase.firestore();
 
   const doc = await db.collection('comentarios').doc(e.target.parentElement.id);
 
   const post = await doc.get();
 
-  await doc.set({ likes: post.data().likes + 1 }, { merge: true });
+
+  await doc.set({
+    likes: post.data().likes + 1
+  }, {
+    merge: true
+  });
 
   renderPosts();
 }
@@ -86,9 +95,11 @@ async function edit(e) {
     fieldPost.setAttribute('contentEditable', false);
     const textContent = fieldPost.textContent;
 
-    await db.collection('comentarios').doc(id).set(
-      { text: textContent }, { merge: true },
-    );
+    await db.collection('comentarios').doc(id).set({
+      text: textContent
+    }, {
+      merge: true
+    }, );
 
     renderPosts();
   } else {
@@ -122,8 +133,8 @@ async function deletePost(e) {
   const id = e.target.parentElement.parentElement.parentElement.id;
 
   await db.collection('postagens').doc(id).delete().then(() => {
-    console.log('Document successfully deleted!');
-  })
+      console.log('Document successfully deleted!');
+    })
     .catch(() => {
       console.error('Error removing document: ', error);
     });
@@ -138,8 +149,8 @@ async function deletes(e) {
   const id = e.target.parentElement.parentElement.id;
 
   await db.collection('comentarios').doc(id).delete().then(() => {
-    console.log('Document successfully deleted!');
-  })
+      console.log('Document successfully deleted!');
+    })
     .catch(() => {
       console.error('Error removing document: ', error);
     });
@@ -149,14 +160,14 @@ async function deletes(e) {
 
 function eventsPost(listPosts) {
   listPosts.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', countLikes));
-  listPosts.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', editPost));
+  listPosts.querySelectorAll('button.edit-button').forEach(button => button.addEventListener('click', editPost));
   listPosts.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletePost));
   listPosts.querySelectorAll('button.audience-button').forEach(button => button.addEventListener('click', editAudience));
 }
 
 function eventsComments(listComments) {
   listComments.querySelectorAll('button.like-button').forEach(button => button.addEventListener('click', likes));
-  listComments.querySelectorAll('button.edite-button').forEach(button => button.addEventListener('click', edit));
+  listComments.querySelectorAll('button.edit-button').forEach(button => button.addEventListener('click', edit));
   listComments.querySelectorAll('button.delete-button').forEach(button => button.addEventListener('click', deletes));
 }
 
@@ -170,7 +181,8 @@ async function newPost(e) {
       text: e.target.elements.post.value,
       private: e.target.elements.audience.checked,
       likes: 0,
-      date: Date.now(),
+      usersLikesPerPost: [],
+      date: Date.now()
     });
     renderPosts();
   } catch (erro) {
@@ -229,7 +241,6 @@ function controllerHome(template) {
 
   const formPost = container.querySelector('#form-post');
   const buttonLoggout = container.querySelector('#loggout');
-  const buttonpersonalFeed = container.querySelector('#personal-posts')
   const iconMenu = container.querySelector('#icon-menu');
   const lock = container.querySelector('#lock');
   try {
@@ -240,7 +251,6 @@ function controllerHome(template) {
   profile(container);
 
   formPost.addEventListener('submit', newPost);
-  buttonpersonalFeed.addEventListener('click', personalFeed)
   buttonLoggout.addEventListener('click', loggout);
   iconMenu.addEventListener('click', stateMenu);
   lock.addEventListener('click', privatePost);
@@ -249,4 +259,7 @@ function controllerHome(template) {
 }
 
 export default controllerHome;
-export { eventsPost, eventsComments };
+export {
+  eventsPost,
+  eventsComments
+};
