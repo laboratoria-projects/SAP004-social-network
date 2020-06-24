@@ -25,7 +25,7 @@ export async function printComment(li) {
           ${commentData.likes}
           <i class="icon-heart heart-clicked"></i>
           <button>
-          <button class="edite-button">
+          <button class="edit-button">
               <i class="icon-pencil"></i>
           </button>
           <button class="delete-button">
