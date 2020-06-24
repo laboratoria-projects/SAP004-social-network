@@ -72,10 +72,11 @@ async function renderPosts() {
 
     eventsPost(listPosts);
     renderComment();
-
   } catch (error) {
-
+    console.log(error);
   }
 }
+
+renderPosts();
 
 export default renderPosts;

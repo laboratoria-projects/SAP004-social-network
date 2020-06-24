@@ -19,8 +19,8 @@ export async function printComment(li) {
 
       if (commentData.postId === li.id) {
         list.innerHTML = `
-          <h2>${commentData.user} diz:</h2>
-          <p class="message">${commentData.text}</p>
+          <h2>X comentou:</h2>
+          <p class="message-comment">${commentData.text}</p>
           <button class="like-button">
           ${commentData.likes}
           <i class="icon-heart heart-clicked"></i>
@@ -36,13 +36,17 @@ export async function printComment(li) {
       }
 
       list.id = commentRef.id;
-      list.classList.add('commentPost');
+      list.classList.add('comment-post');
     },
   );
 
   listOfComments.append(...html);
 
   eventsComments(listOfComments);
+
+  if (listOfComments.querySelector('.comment-post') != null) {
+    listOfComments.style.height = '90px';
+  }
 }
 
 async function newComment(e) {

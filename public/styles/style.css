@@ -85,8 +85,6 @@ body {
   display: none;
 }
 
-
-
 .home {
   width: 100%;
 }
@@ -104,11 +102,12 @@ body {
 }
 
 .nav-home {
+  position: sticky;
+  top: 0;
   background-color: #ad92e8;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   height: 50px;
 }
 
@@ -143,6 +142,45 @@ body {
   font-size: 32px;
   color: #3b324f;
   text-align: center;
+}
+
+.box__profile {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  border: 1px solid #3b324f85;
+  border-radius: 5px;
+  height: 230px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.profile__avatar {
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+}
+
+.profile__avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.info__profile {
+  display: flex;
+  flex-direction: column;
+  height: 55px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info__profile h2 {
+  font-size: 30px;
+  font-weight: 900;
 }
 
 .mainly-home {
@@ -210,9 +248,38 @@ body {
 }
 
 .list-buttons button {
-  margin: 0px 3px;
+  margin: 0px 6px;
+  font-size: 20px;
 }
 
+.list-comments {
+  overflow: scroll;
+}
+
+.comment-post {
+  padding: 10px;
+}
+
+.comment-post h2 {
+  margin-bottom: 5px;
+}
+
+.comment-post button i {
+  font-size: 15px;
+}
+
+.like-button {
+  margin-right: 20px;
+}
+
+.edite-button {
+  margin-right: 15px;
+}
+
+.message-comment {
+  padding: 5px !important;
+  margin-bottom: 5px;
+}
 
 @media screen and (min-width: 800px) {
   .logo-desktop {
@@ -262,7 +329,7 @@ body {
   .mainly-home {
     display: flex;
   }
-  
+
   .box__profile {
     display: flex;
     margin-top: 50px;
@@ -284,7 +351,7 @@ body {
   }
 
   .profile__avatar img {
-    width: 270px;
+    width: 100%;
     height: auto;
   }
 
@@ -303,6 +370,11 @@ body {
 
   .logo-desktop {
     width: 100%;
+  }
+
+  .list-comments {
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .back {

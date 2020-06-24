@@ -15,9 +15,8 @@ async function loggout(e) {
     await firebase.auth().signOut();
 
     success();
-
-  } catch (e) {
-    error(e);
+  } catch (erro) {
+    error(erro);
   }
 }
 
@@ -227,11 +226,7 @@ function controllerHome(template) {
   const buttonLoggout = container.querySelector('#loggout');
   const iconMenu = container.querySelector('#icon-menu');
   const lock = container.querySelector('#lock');
-  try {
-    renderPosts();
-  } catch (error) {
 
-  }
   profile(container);
 
   formPost.addEventListener('submit', newPost);
@@ -239,6 +234,7 @@ function controllerHome(template) {
   iconMenu.addEventListener('click', stateMenu);
   lock.addEventListener('click', privatePost);
 
+  renderPosts();
   return container;
 }
 
