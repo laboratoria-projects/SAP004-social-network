@@ -224,7 +224,13 @@ body {
   border-radius: 100%;
 }
 
-.profile__section {
+.profile-section {
+  width: 100%;
+}
+
+.posts-profile {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -321,6 +327,12 @@ body {
 
   .back {
     margin-top: 50px;
+  }
+
+  .posts-profile {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
   }
 }
 

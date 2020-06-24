@@ -19,7 +19,7 @@ async function renderOnlyUserPosts() {
                           ${post.data().likes}
                           <i class="icon-heart heart-clicked"></i>
                         </button>
-                        <button class="edite-button">
+                        <button class="edit-button">
                           <i class="icon-pencil"></i>
                         </button>
                         <button class="delete-button">

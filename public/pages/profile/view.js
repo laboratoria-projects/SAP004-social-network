@@ -16,7 +16,7 @@ export default () => {
             <input value="Password" type="password" id="user-pwd"/>
             <button type="submit" id="update-user-pwd">Update</button>
         </section>
-        <section>
+        <section class="posts-profile">
           <ul id="personal-posts" class="post-feed"></ul>
         </section>
       </main>
