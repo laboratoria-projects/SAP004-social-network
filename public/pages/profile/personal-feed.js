@@ -37,12 +37,4 @@ async function renderOnlyUserPosts() {
     });
 }
 
-function controllerPersonalPosts(template) {
-  const container = document.createElement('div');
-  container.classList.add('home');
-  container.innerHTML = template;
-  renderOnlyUserPosts();
-  return container;
-}
-
 export default renderOnlyUserPosts;
