@@ -13,7 +13,6 @@ async function renderOnlyUserPosts() {
         const ul = document.querySelector('#personal-posts');
         const li = document.createElement('li');
         li.innerHTML = `
-                      <h3 class="user-name">${post.data().user}</h3>
                       <p class="message-post">${post.data().text}</p>
                       <section class="list-buttons">
                         <button class="like-button">
