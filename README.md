@@ -29,6 +29,9 @@ Utilizamos o Firebase no nosso projeto.
 * Hosting. 
 
 Teste nossa rede no link: <https://sap004-knowledge.web.app/>
+
+***
+
 ## Histórias de Usuário
 
   * Como usuário novo, devo poder criar uma conta com email e senha válidos para poder iniciar uma sessão e ingressar na Rede Social.
