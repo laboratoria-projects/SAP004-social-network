@@ -20,6 +20,15 @@ O Layout da nossa aplicação foi construido utilizando o mobile first e SPA.
 
  ***
 
+## Firebase 
+Utilizamos o Firebase no nosso projeto. 
+
+* Cloud Firestore;
+* Realtime Database;
+* Authentication;
+* Hosting. 
+
+Teste nossa rede no link: <https://sap004-knowledge.web.app/>
 ## Histórias de Usuário
 
   * Como usuário novo, devo poder criar uma conta com email e senha válidos para poder iniciar uma sessão e ingressar na Rede Social.
