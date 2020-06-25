@@ -16,9 +16,21 @@ Utilizamos uma paleta de cores com tons de lilás e roxo, o roxo segundo a psico
 ## Mobile First e SPA
 
 O Layout da nossa aplicação foi construido utilizando o mobile first e SPA.
- ![](readme.md-img/mobile.jpg)
+ ![](readme.md-img/screenshot.jpeg)
 
  ***
+
+## Firebase 
+Utilizamos o Firebase no nosso projeto. 
+
+* Cloud Firestore;
+* Realtime Database;
+* Authentication;
+* Hosting. 
+
+Teste nossa rede no link: <https://sap004-knowledge.web.app/>
+
+***
 
 ## Histórias de Usuário
 
