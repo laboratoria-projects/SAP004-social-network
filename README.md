@@ -16,7 +16,7 @@ Utilizamos uma paleta de cores com tons de lilás e roxo, o roxo segundo a psico
 ## Mobile First e SPA
 
 O Layout da nossa aplicação foi construido utilizando o mobile first e SPA.
- ![](readme.md-img/mobile.jpg)
+ ![](readme.md/screenshot.jpeg)
 
  ***
 
